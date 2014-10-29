@@ -24,4 +24,4 @@ def eventOnTerminator(sectorId, factionId, id):
 	return jsonify({'command':'rotate', 'value':10.0})
 
 if __name__ == '__main__':
-    app.run(host='172.17.226.73', debug=True)
+    app.run(host='0.0.0.0', debug=True)
