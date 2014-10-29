@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -13,14 +13,17 @@ def info():
 
 @app.route('/sectors/<int:sectorId>/factions/<int:factionId>/recyclers/<int:id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def eventOnRecycler(sectorId, factionId, id):
+	print request.json
 	return jsonify({'command':'newDrone', 'value':0.0})
 
 @app.route('/sectors/<int:sectorId>/factions/<int:factionId>/drones/<int:id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def eventOnDrone(sectorId, factionId, id):
+	print request.json
 	return jsonify({'command':'advance', 'value':10.0})
 
 @app.route('/sectors/<int:sectorId>/factions/<int:factionId>/terminators/<int:id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def eventOnTerminator(sectorId, factionId, id):
+	print request.json
 	return jsonify({'command':'rotate', 'value':10.0})
 
 if __name__ == '__main__':
