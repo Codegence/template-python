@@ -1,6 +1,7 @@
 #!flask/bin/python
 from flask import Flask, jsonify, request
 import random
+import os
 
 app = Flask(__name__)
 
@@ -29,4 +30,5 @@ def eventOnTerminator(sectorId, factionId, id):
 	return jsonify({'command':random.choice(['advance', 'rotate', 'fire']), 'value':10.0})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+	port = int(os.environ.get('PORT',5000))
+    app.run(host='0.0.0.0', port=port) #, debug=True
