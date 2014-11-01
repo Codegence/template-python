@@ -1,5 +1,6 @@
 #!flask/bin/python
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+import random
 
 app = Flask(__name__)
 
@@ -12,16 +13,20 @@ def info():
 	return jsonify({'version':'1.1.0'})
 
 @app.route('/sectors/<int:sectorId>/factions/<int:factionId>/recyclers/<int:id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def eventOnRecycler(sectorId, factionId, id):
-	return jsonify({'command':'newDrone', 'value':'0'})
+def eventOnRecycler(sectorId, factionId, id):	
+	print request.json
+
+	return jsonify({'command': random.choice(['newDrone', 'newTerminator']), 'value':0.0})
 
 @app.route('/sectors/<int:sectorId>/factions/<int:factionId>/drones/<int:id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def eventOnDrone(sectorId, factionId, id):
-	return jsonify({'command':'advance', 'value':'10'})
+	print request.json
+	return jsonify({'command':random.choice(['advance', 'rotate']), 'value':10.0})
 
 @app.route('/sectors/<int:sectorId>/factions/<int:factionId>/terminators/<int:id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def eventOnTerminator(sectorId, factionId, id):
-	return jsonify({'command':'rotate', 'value':'10'})
+	print request.json
+	return jsonify({'command':random.choice(['advance', 'rotate', 'fire']), 'value':10.0})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
