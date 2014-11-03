@@ -12,9 +12,14 @@ pip install -r requirements.txt
 
 3) ./run.sh
 
-4) Heroku:
+4) Deploy in Heroku:
+
+$ heroku login
+
 $ heroku apps:create [your_app_name]
+
 $ git push heroku master
+
 $ heroku open
 
 https://[your_app_name].herokuapp.com
